@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import inquirer from "inquirer"
-import MemoryGame from "./games/memory-game.js"
+const inquirer = require('inquirer')
+const MemoryGame = require('./games/memory-game.js')
 
 await menu()
 
@@ -11,7 +11,7 @@ async function menu() {
     options.push('Sair')
     while(true) {
         let answer = await inquirer.prompt({
-            message: "Escolha uma das opções abaixo:",
+            message: 'Escolha uma das opções abaixo:',
             choices: options,
             loop: true,
             type: 'list',
