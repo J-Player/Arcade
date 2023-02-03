@@ -1,18 +1,20 @@
-import inquirer from "inquirer"
-import { colorString } from "../utils/game-util.js"
-import Game from "./game.js"
+import chalk from 'chalk'
+
+const inquirer = require('inquirer')
+const chalk = require('chalk')
+const Game = require('./game.js')
 
 const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms))
 
-export default class MemoryGame extends Game {
+class MemoryGame extends Game {
     
     constructor() {
         super({name: 'Jogo da Memória'})
         this.colors = [
-            colorString('Vermelho', 'red'),
-            colorString('Verde', 'green'),
-            colorString('Azul', 'blue'),
-            colorString('Amarelo', 'yellow')
+            chalk.redBright('Vermelho', 'red'),
+            chalk.greenBright('Verde', 'green'),
+            chalk.blueBright('Azul', 'blue'),
+            chalk.yellowBright('Amarelo', 'yellow')
         ]
         this.sequence = []
         this.options = []
@@ -48,7 +50,7 @@ export default class MemoryGame extends Game {
                     name: 'resposta'
                 })
                 if ((answer.resposta === this.options[this.options.length - 1]) || (answer.resposta !== this.sequence[i])) {
-                    console.log(`${colorString("GAME OVER! A sequência correta é:", 'red')}`)
+                    console.log(`${chalk.redBright('GAME OVER! A sequência correta é:')}`)
                     console.log(`${this.sequence.join(' => ')}`)
                     console.log(`Você acertou ${hits} de ${this.sequence.length}.`)
                     let n = 3
@@ -68,3 +70,5 @@ export default class MemoryGame extends Game {
     }
     
 }
+
+module.exports = MemoryGame
